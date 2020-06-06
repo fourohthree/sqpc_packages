@@ -20,21 +20,20 @@ end
 
 # Install packages
 install_packages.each do |ipkg,version|
-  if installed_packages.include?("#{ipkg}"))
-    if "#{version}" == "latest" || "#{version}" == "upgrade"
-      package "#{ipkg}" do
-        action :upgrade
-      end
-    elsif version.nil? || version.empty?
-      package "#{ipkg}" do
-        action :install
-      end
-    else
-      package "#{ipkg}" do
-        action :install
-        version "#{version}"
-      end
-   end
+  if "#{version}" == "latest" || "#{version}" == "upgrade"
+    package "#{ipkg}" do
+      action :upgrade
+    end
+  elsif version.nil? || version.empty?
+    package "#{ipkg}" do
+      action :install
+    end
+  else
+    package "#{ipkg}" do
+      action :install
+      version "#{version}"
+    end
+  end
 end
 
 # EOF
